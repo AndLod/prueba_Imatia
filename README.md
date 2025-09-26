@@ -49,8 +49,12 @@
 
 ## Explicación consulta SQL
 La consulta que crea la tabla pedida en el enunciado se encuentra en el fichero `create_table.sql`. Comentar que para la traducción de la columna `search_query` se emplea la función `SNOWFLAKE.CORTEX.TRANSLATE` que tiene ciertas limitaciones: 
+- En mi caso, se tuvo que activar/permitir que mi cuenta alojada en la región pudiera emplear dicha función de traducción.
 - No se encuentran todos los idiomas que se incluyen en las filas.
 - Es demasiado lenta para la cantidad de datos que tiene la tabla.
+
+Para emplear la función de traducción se tiene que ejecutar antes: 
+> `ALTER ACCOUNT SET CORTEX_ENABLED_CROSS_REGION = 'ANY_REGION';`
 
 En la [documentación de dicha función](https://docs.snowflake.com/en/sql-reference/functions/translate-snowflake-cortex) se comentan los idiomas disponibles, siendo estos los que se indicaron manualmente en la consulta, ya que no encontré forma de obtenerlos mediante una consulta. 
 
